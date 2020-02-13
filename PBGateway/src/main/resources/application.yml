@@ -1,0 +1,37 @@
+server:
+  port: 8000
+
+zuul:
+  ignoredServices: '*'
+  prefix: /api
+  routes:
+    account:
+      path: /account/**
+      serviceId: pbmovements
+      strip-prefix: false
+    movements:
+      path: /movements/**
+      serviceId: pbmovements
+      strip-prefix: false
+    reference:
+      path: /reference/**
+      serviceId: pbreferences
+      strip-prefix: false
+    service:
+      path: /service/**
+      serviceId: pbreferences
+      strip-prefix: false
+
+
+endpoints:
+  routes:
+    sensitive: false
+  trace:
+    sensitive: false
+
+eureka:
+  client:
+    service-url:
+      default-zone: http://localhost:8761/eureka/
+
+
